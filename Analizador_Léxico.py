@@ -103,3 +103,33 @@ def t_NUMBER(t):
     t.value = int(t.value)
     return t
 # AQUÍ TERMINA UNA PARTE DE MI TRABAJO - AARÓN REYES
+
+# De aquí en adelante el código fue reciclado de la práctica en clases.
+# Define a rule so we can track line numbers
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+# Error handling rule
+def t_error(t):
+    print("Illegal character '%s'" % t.value[0])
+    t.lexer.skip(1)
+
+# Build the lexer
+lexer = lex.lex()
+
+def getTokens(lexer):
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        print(tok)
+
+'''linea = " "
+
+while linea != "":
+    linea = input(">>")
+    lexer.input(linea)
+    getTokens(lexer)
+# Tokenize
+print("Succesfull")'''
